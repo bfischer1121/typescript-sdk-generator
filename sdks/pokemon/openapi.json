@@ -1,0 +1,444 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "PokeAPI",
+    "description": "A RESTful API for Pokémon data",
+    "version": "2.0"
+  },
+  "servers": [
+    {
+      "url": "https://pokeapi.co/api/v2"
+    }
+  ],
+  "paths": {
+    "/pokemon/{id}": {
+      "get": {
+        "operationId": "getPokemonById",
+        "summary": "Retrieves Pokémon by ID",
+        "description": "Returns data of a Pokémon specified by its ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the Pokémon.",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A Pokémon object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pokemon"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/stat/{id}": {
+      "get": {
+        "operationId": "getStatById",
+        "summary": "Retrieves stat by ID",
+        "description": "Returns data of a stat specified by its ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the stat.",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A stat object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Stat"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/nature/{id}": {
+      "get": {
+        "operationId": "getNatureById",
+        "summary": "Retrieves nature by ID",
+        "description": "Returns data of a nature specified by its ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the nature.",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A nature object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Nature"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Pokemon": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The identifier for this Pokémon resource."
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of this Pokémon."
+          },
+          "base_experience": {
+            "type": "integer",
+            "description": "The base experience gained for defeating this Pokémon."
+          },
+          "height": {
+            "type": "integer",
+            "description": "The height of this Pokémon in decimeters."
+          },
+          "is_default": {
+            "type": "boolean",
+            "description": "Set for exactly one Pokémon used as the default for each species."
+          },
+          "order": {
+            "type": "integer",
+            "description": "Order for sorting. Almost national order, except families are grouped together."
+          },
+          "weight": {
+            "type": "integer",
+            "description": "The weight of this Pokémon in hectograms."
+          },
+          "abilities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Ability"
+            }
+          },
+          "forms": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Form"
+            }
+          },
+          "game_indices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GameIndex"
+            }
+          },
+          "held_items": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "location_area_encounters": {
+            "type": "string",
+            "description": "A link to a list of locations where this Pokémon can be encountered."
+          },
+          "moves": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Move"
+            }
+          },
+          "species": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The name of this Pokémon species."
+              },
+              "url": {
+                "type": "string",
+                "description": "The URL of this Pokémon species."
+              }
+            }
+          },
+          "sprites": {
+            "type": "object",
+            "properties": {
+              "back_default": {
+                "type": "string",
+                "description": "The default back sprite for this Pokémon."
+              },
+              "front_default": {
+                "type": "string",
+                "description": "The default front sprite for this Pokémon."
+              }
+            }
+          },
+          "stats": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Stat"
+            }
+          },
+          "types": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Type"
+            }
+          }
+        }
+      },
+      "Ability": {
+        "type": "object",
+        "properties": {
+          "ability": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The name of the ability."
+              },
+              "url": {
+                "type": "string",
+                "description": "The URL of the ability."
+              }
+            }
+          },
+          "is_hidden": {
+            "type": "boolean",
+            "description": "True if this is a hidden ability."
+          },
+          "slot": {
+            "type": "integer",
+            "description": "The slot of this ability for the Pokémon."
+          }
+        }
+      },
+      "Form": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of this form."
+          },
+          "url": {
+            "type": "string",
+            "description": "The URL of this form."
+          }
+        }
+      },
+      "GameIndex": {
+        "type": "object",
+        "properties": {
+          "game_index": {
+            "type": "integer",
+            "description": "The internal id of an API resource within game data."
+          },
+          "version": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The name of the game version."
+              },
+              "url": {
+                "type": "string",
+                "description": "The URL of the game version."
+              }
+            }
+          }
+        }
+      },
+      "Move": {
+        "type": "object",
+        "properties": {
+          "move": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The name of the move."
+              },
+              "url": {
+                "type": "string",
+                "description": "The URL of the move."
+              }
+            }
+          },
+          "version_group_details": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "level_learned_at": {
+                  "type": "integer",
+                  "description": "The level at which the move is learned."
+                },
+                "move_learn_method": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "The name of the move learn method."
+                    },
+                    "url": {
+                      "type": "string",
+                      "description": "The URL of the move learn method."
+                    }
+                  }
+                },
+                "version_group": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "The name of the version group."
+                    },
+                    "url": {
+                      "type": "string",
+                      "description": "The URL of the version group."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Stat": {
+        "type": "object",
+        "properties": {
+          "base_stat": {
+            "type": "integer",
+            "description": "The base value of the stat."
+          },
+          "effort": {
+            "type": "integer",
+            "description": "The effort points (EV) the stat gains."
+          },
+          "stat": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The name of the stat."
+              },
+              "url": {
+                "type": "string",
+                "description": "The URL of the stat."
+              }
+            }
+          }
+        }
+      },
+      "Type": {
+        "type": "object",
+        "properties": {
+          "slot": {
+            "type": "integer",
+            "description": "The slot of this type for the Pokémon."
+          },
+          "type": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The name of the type."
+              },
+              "url": {
+                "type": "string",
+                "description": "The URL of the type."
+              }
+            }
+          }
+        }
+      },
+      "Nature": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The ID of the nature."
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the nature."
+          },
+          "increased_stat": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The name of the stat increased by this nature."
+              },
+              "url": {
+                "type": "string",
+                "description": "The URL of the stat increased by this nature."
+              }
+            }
+          },
+          "decreased_stat": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The name of the stat decreased by this nature."
+              },
+              "url": {
+                "type": "string",
+                "description": "The URL of the stat decreased by this nature."
+              }
+            }
+          },
+          "likes_flavor": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The flavor this nature likes."
+              },
+              "url": {
+                "type": "string",
+                "description": "The URL of the flavor this nature likes."
+              }
+            }
+          },
+          "hates_flavor": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The flavor this nature hates."
+              },
+              "url": {
+                "type": "string",
+                "description": "The URL of the flavor this nature hates."
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

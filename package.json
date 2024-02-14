@@ -1,0 +1,23 @@
+{
+  "name": "pokemon-sdk",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "ts-node src/demo.ts",
+    "generate": "ts-node src/generator.ts",
+    "test": "NODE_OPTIONS='--experimental-modules --experimental-vm-modules --experimental-specifier-resolution=node' jest"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.1",
+    "fs-extra": "^11.2.0",
+    "oas-normalize": "^11.0.1",
+    "openai": "^4.26.1",
+    "openapi-typescript-codegen": "^0.27.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "jest": "^29.7.0",
+    "ts-node": "^10.9.2"
+  }
+}
